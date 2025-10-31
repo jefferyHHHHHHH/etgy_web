@@ -98,3 +98,15 @@ button:focus-visible {
 }
 
 /* 去除模板中的 prefers-color-scheme 适配，统一走 data-theme 变量 */
+
+/* 路由过渡动画 */
+.view-fade-enter-active,
+.view-fade-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.view-fade-enter-from,
+.view-fade-leave-to {
+  opacity: 0;
+  transform: translateY(6px);
+}

@@ -5,9 +5,11 @@ import router from './router'
 import { setupStore } from './stores'
 import { useSettingsStore } from './stores/modules/settings'
 import { setupI18n } from './plugins/i18n'
+import { setupElement } from './plugins/element'
 
 const app = createApp(App)
 setupStore(app)
+setupElement(app)
 // 初始化主题属性（将当前 theme 写入 data-theme）
 try {
   const settings = useSettingsStore()
@@ -15,5 +17,11 @@ try {
   document.documentElement.setAttribute('lang', settings.locale)
   const i18n = setupI18n(settings.locale)
   app.use(i18n)
+} catch {}
+// 恢复会话与权限
+try {
+  const { useUserStore } = await import('./stores/modules/user')
+  const user = useUserStore()
+  await user.restore()
 } catch {}
 app.use(router).mount('#app')
