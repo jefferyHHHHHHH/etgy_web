@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "Vite Vue 应用"
+  },
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "user": "用户"
+  },
+  "actions": {
+    "toggleTheme": "切换主题",
+    "login": "登录",
+    "logout": "退出登录",
+    "exportExcel": "导出 Excel"
+  },
+  "env": {
+    "apiBase": "接口地址"
+  },
+  "auth": {
+    "needLogin": "请先登录"
+  }
+}

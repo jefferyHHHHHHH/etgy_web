@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "Vite Vue App"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "user": "User"
+  },
+  "actions": {
+    "toggleTheme": "Toggle Theme",
+    "login": "Login",
+    "logout": "Logout",
+    "exportExcel": "Export Excel"
+  },
+  "env": {
+    "apiBase": "API Base"
+  },
+  "auth": {
+    "needLogin": "Please login first"
+  }
+}
