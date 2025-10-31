@@ -136,6 +136,34 @@ Closes #123
 > - 提交前自动执行 ESLint/Stylelint/Prettier；
 > - 不符合规范将被拦截，按提示修复后再提交。
 
+### 提交样例（PowerShell）
+
+请确保使用“半角冒号 :”且“冒号后有一个空格”。以下命令可直接复制使用：
+
+```powershell
+# 新功能
+git commit -m "feat: 初始化管理端基础页面"
+
+# 新功能（带作用域）
+git commit -m "feat(core): 接入 Mock 服务并完成路由守卫"
+
+# 缺陷修复
+git commit -m "fix(permission): 修复 v-permission 指令的 ESLint 报错"
+
+# 文档/杂项
+git commit -m "docs: 补充 README 提交流程"
+git commit -m "chore: 更新依赖与脚本"
+
+# 本地测试 commitlint（检验一条消息是否合规）
+echo "feat: 初始化管理端基础页面" | npx commitlint
+```
+
+常见失败与修复：
+
+- 错误：`subject-empty` / `type-empty`
+  - 原因：使用了全角冒号（：）或冒号后无空格，导致 commitlint 解析不到头部。
+  - 解决：改用半角冒号“:”，并在冒号后加一个空格，例如：`feat: 初始化管理端基础页面`。
+
 ## 8. 完整提交流程（从开发到合并）
 
 1. 拉新分支并开发：
