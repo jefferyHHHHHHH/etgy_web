@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(openspec list:*)",
+      "Bash(openspec validate:*)",
+      "Bash(npm run dev:*)",
+      "Bash(openspec status:*)",
+      "Bash(openspec --help:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(powershell:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run stylelint:*)",
+      "Bash(npm run stylelint:fix:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

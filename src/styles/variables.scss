@@ -1,0 +1,90 @@
+// ============================================
+// 设计系统变量 - SCSS Variables
+// ============================================
+
+// 间距系统 (基于 4px)
+$spacing-0: 0;
+$spacing-1: 4px;
+$spacing-2: 8px;
+$spacing-3: 12px;
+$spacing-4: 16px;
+$spacing-5: 20px;
+$spacing-6: 24px;
+$spacing-8: 32px;
+$spacing-10: 40px;
+$spacing-12: 48px;
+$spacing-16: 64px;
+$spacing-20: 80px;
+$spacing-24: 96px;
+
+// 字号系统
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-2xl: 24px;
+$font-size-3xl: 30px;
+$font-size-4xl: 36px;
+
+// 行高
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// 字重
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// 字体族
+$font-family-base: system-ui, -apple-system, 'Segoe UI', roboto, 'Helvetica Neue', arial,
+  sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$font-family-mono: 'SFMono-Regular', consolas, 'Liberation Mono', menlo, courier, monospace;
+
+// 圆角系统
+$radius-none: 0;
+$radius-sm: 2px;
+$radius-base: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;
+$radius-2xl: 16px;
+$radius-3xl: 24px;
+$radius-full: 9999px;
+
+// Z-index 层级
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// 布局尺寸
+$sidebar-width-expanded: 240px;
+$sidebar-width-collapsed: 64px;
+$topbar-height: 60px;
+$content-max-width: 1280px;
+
+// 响应式断点
+$breakpoint-xs: 0;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// 过渡动画
+$transition-fast: 150ms;
+$transition-base: 250ms;
+$transition-slow: 300ms;
+$transition-slower: 500ms;
+
+// 缓动函数
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);

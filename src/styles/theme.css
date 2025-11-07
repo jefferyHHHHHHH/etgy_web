@@ -1,0 +1,132 @@
+/* ============================================
+   设计系统主题 - CSS Variables
+   支持亮色/暗色模式
+   ============================================ */
+
+:root {
+  /* 主色（深蓝色，专业严肃） */
+  --color-primary: #1a56db;
+  --color-primary-light: #3b78e7;
+  --color-primary-dark: #1543b1;
+
+  /* 功能色 */
+  --color-success: #16a34a;
+  --color-success-light: #22c55e;
+  --color-success-dark: #15803d;
+  --color-warning: #ea580c;
+  --color-warning-light: #f97316;
+  --color-warning-dark: #c2410c;
+  --color-danger: #dc2626;
+  --color-danger-light: #ef4444;
+  --color-danger-dark: #b91c1c;
+  --color-info: #0891b2;
+  --color-info-light: #06b6d4;
+  --color-info-dark: #0e7490;
+
+  /* 中性色 - 亮色主题 (Light Theme) */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* 语义化颜色 - 亮色主题 */
+  --color-bg-page: var(--color-gray-50);
+  --color-bg-container: #fff;
+  --color-bg-elevated: #fff;
+  --color-bg-hover: var(--color-gray-100);
+  --color-bg-active: var(--color-gray-200);
+  --color-border: var(--color-gray-200);
+  --color-border-light: var(--color-gray-100);
+  --color-border-dark: var(--color-gray-300);
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-600);
+  --color-text-tertiary: var(--color-gray-500);
+  --color-text-disabled: var(--color-gray-400);
+  --color-text-inverse: #fff;
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-dark);
+
+  /* 阴影系统 */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -2px rgb(0 0 0 / 10%);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 25%);
+
+  /* 其他语义化变量 */
+  --sidebar-bg: var(--color-bg-elevated);
+  --topbar-bg: var(--color-bg-container);
+  --content-bg: var(--color-bg-page);
+}
+
+/* 暗色主题 (Dark Theme) */
+[data-theme='dark'] {
+  /* 中性色 - 暗色主题 (使用 Slate 色系) */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
+
+  /* 语义化颜色 - 暗色主题 */
+  --color-bg-page: var(--color-gray-900);
+  --color-bg-container: var(--color-gray-800);
+  --color-bg-elevated: var(--color-gray-800);
+  --color-bg-hover: var(--color-gray-700);
+  --color-bg-active: var(--color-gray-600);
+  --color-border: var(--color-gray-700);
+  --color-border-light: var(--color-gray-800);
+  --color-border-dark: var(--color-gray-600);
+  --color-text-primary: var(--color-gray-100);
+  --color-text-secondary: var(--color-gray-400);
+  --color-text-tertiary: var(--color-gray-500);
+  --color-text-disabled: var(--color-gray-600);
+  --color-text-inverse: var(--color-gray-900);
+  --color-link: #3b82f6; /* 暗色下主色稍微调亮 */
+  --color-link-hover: #60a5fa;
+
+  /* 暗色模式下阴影需要更暗 */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 30%);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 40%), 0 1px 2px -1px rgb(0 0 0 / 30%);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 40%), 0 2px 4px -2px rgb(0 0 0 / 30%);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 50%), 0 4px 6px -4px rgb(0 0 0 / 30%);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 50%), 0 8px 10px -6px rgb(0 0 0 / 30%);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 60%);
+
+  /* 语义化背景 */
+  --sidebar-bg: var(--color-bg-elevated);
+  --topbar-bg: var(--color-bg-container);
+  --content-bg: var(--color-bg-page);
+}
+
+/* 主题切换过渡动画 */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html *,
+html *::before,
+html *::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* 避免影响 Element Plus 组件的过渡动画 */
+.el-*,
+.el-*::before,
+.el-*::after {
+  transition: none !important;
+}

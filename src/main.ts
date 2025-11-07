@@ -1,5 +1,8 @@
 import { createApp } from 'vue'
-import './style.css'
+// 设计系统样式 - 按顺序加载
+import './styles/theme.css' // CSS 变量（亮色/暗色主题）
+import './styles/global.scss' // 全局样式
+import './styles/element-override.scss' // Element Plus 主题定制
 import App from './App.vue'
 import router from './router'
 import { setupStore } from './stores'
