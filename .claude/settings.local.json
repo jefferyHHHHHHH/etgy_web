@@ -12,7 +12,8 @@
       "Bash(npm install:*)",
       "Bash(npm run stylelint:*)",
       "Bash(npm run stylelint:fix:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

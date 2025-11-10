@@ -29,24 +29,24 @@
             <span>视频管理</span>
           </template>
           <el-menu-item index="/videos">视频列表</el-menu-item>
-          <el-menu-item index="/videos/create">上传视频</el-menu-item>
+          <el-menu-item index="/videos/new">上传视频</el-menu-item>
+          <el-menu-item index="/reviews">审核队列</el-menu-item>
         </el-sub-menu>
 
-        <!-- 审核工作台 -->
-        <el-menu-item index="/review">
-          <el-icon><DocumentChecked /></el-icon>
-          <template #title>审核工作台</template>
-        </el-menu-item>
-
-        <!-- 用户管理 -->
-        <el-sub-menu index="users">
+        <!-- 直播管理 -->
+        <el-sub-menu index="live">
           <template #title>
-            <el-icon><User /></el-icon>
-            <span>用户管理</span>
+            <el-icon><VideoCamera /></el-icon>
+            <span>直播管理</span>
           </template>
-          <el-menu-item index="/users">用户列表</el-menu-item>
-          <el-menu-item index="/users/roles">角色权限</el-menu-item>
+          <el-menu-item index="/live/applications">直播申请</el-menu-item>
         </el-sub-menu>
+
+        <!-- 志愿者管理 -->
+        <el-menu-item index="/volunteers">
+          <el-icon><User /></el-icon>
+          <template #title>志愿者管理</template>
+        </el-menu-item>
 
         <!-- 系统设置 -->
         <el-sub-menu index="settings">
@@ -54,9 +54,15 @@
             <el-icon><Setting /></el-icon>
             <span>系统设置</span>
           </template>
-          <el-menu-item index="/settings/profile">个人资料</el-menu-item>
-          <el-menu-item index="/settings/system">系统配置</el-menu-item>
+          <el-menu-item index="/settings/colleges">学院管理</el-menu-item>
+          <el-menu-item index="/audit">审计日志</el-menu-item>
         </el-sub-menu>
+
+        <!-- 其他 -->
+        <el-menu-item index="/about">
+          <el-icon><Document /></el-icon>
+          <template #title>关于</template>
+        </el-menu-item>
       </el-menu>
     </el-scrollbar>
 
@@ -81,6 +87,7 @@ import {
   Setting,
   DArrowLeft,
   DArrowRight,
+  Document,
 } from '@element-plus/icons-vue'
 import LogoPlaceholder from './LogoPlaceholder.vue'
 
@@ -102,11 +109,15 @@ const router = useRouter()
 const activeMenu = computed(() => {
   const path = route.path
   // 匹配当前路由到菜单项
-  if (path.startsWith('/videos')) return path
-  if (path.startsWith('/users')) return path
-  if (path.startsWith('/settings')) return path
+  if (path === '/') return '/dashboard'
   if (path.startsWith('/dashboard')) return '/dashboard'
-  if (path.startsWith('/review')) return '/review'
+  if (path.startsWith('/videos')) return path
+  if (path.startsWith('/reviews')) return '/reviews'
+  if (path.startsWith('/live')) return path
+  if (path.startsWith('/volunteers')) return '/volunteers'
+  if (path.startsWith('/settings')) return path
+  if (path.startsWith('/audit')) return '/audit'
+  if (path.startsWith('/about')) return '/about'
   return path
 })
 
