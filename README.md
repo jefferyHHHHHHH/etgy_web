@@ -1,6 +1,6 @@
 # 管理端（Vue3 + TS + Vite）提交代码完整流程（中文）
 
-本项目为“儿童公益项目”管理端（MVP），前端使用 Vue3 + TypeScript + Vite，UI 使用 Element Plus，服务层支持 Mock/真实接口可切换。
+本项目为"益路同行"管理端（MVP），前端使用 Vue3 + TypeScript + Vite，UI 使用 Element Plus，服务层支持 Mock/真实接口可切换。
 
 —— 本文面向日常开发与提交流程，包含分支、提交信息规范、校验与 PR 合并等关键步骤 ——
 
@@ -39,7 +39,7 @@ npm run preview
 常用环境变量（创建 `./.env.local` 持久化）：
 
 ```ini
-VITE_APP_TITLE=Vite Vue App
+VITE_APP_TITLE=益路同行管理后台
 VITE_API_BASE=https://your-api.example.com/api/v1
 VITE_API_TIMEOUT=15000
 # 前端自测/演示用，默认 dev 下为 true，可显式覆盖
