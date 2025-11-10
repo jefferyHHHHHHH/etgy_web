@@ -10,7 +10,7 @@
       <el-menu
         :default-active="activeMenu"
         :collapse="collapsed"
-        :collapse-transition="false"
+        :collapse-transition="true"
         :unique-opened="true"
         mode="vertical"
         class="sidebar__menu"
