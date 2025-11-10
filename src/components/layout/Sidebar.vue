@@ -51,7 +51,7 @@
         <!-- 系统设置 -->
         <el-sub-menu index="settings">
           <template #title>
-            <el-icon><Setting /></el-icon>
+            <el-icon><Tools /></el-icon>
             <span>系统设置</span>
           </template>
           <el-menu-item index="/settings/colleges">学院管理</el-menu-item>
@@ -84,7 +84,7 @@ import {
   VideoCamera,
   DocumentChecked,
   User,
-  Setting,
+  Tools,
   DArrowLeft,
   DArrowRight,
   Document,
@@ -146,11 +146,12 @@ const handleToggle = () => {
   border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  // 优化：只过渡宽度，使用更快的动画
-  transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  // 展开收起动画
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
   // 使用 GPU 加速
   transform: translateZ(0);
   backface-visibility: hidden;
+  will-change: width;
   z-index: $z-index-fixed;
   overflow: hidden;
 
