@@ -51,7 +51,7 @@
         <!-- 系统设置 -->
         <el-sub-menu index="settings">
           <template #title>
-            <el-icon><Setting /></el-icon>
+            <el-icon><Tools /></el-icon>
             <span>系统设置</span>
           </template>
           <el-menu-item index="/settings/colleges">学院管理</el-menu-item>
@@ -84,7 +84,7 @@ import {
   VideoCamera,
   DocumentChecked,
   User,
-  Setting,
+  Tools,
   DArrowLeft,
   DArrowRight,
   Document,
@@ -146,7 +146,12 @@ const handleToggle = () => {
   border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  transition: width $transition-base $ease-out;
+  // 展开收起动画
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  // 使用 GPU 加速
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: width;
   z-index: $z-index-fixed;
   overflow: hidden;
 
@@ -176,10 +181,21 @@ const handleToggle = () => {
     .el-sub-menu__title {
       height: 48px;
       line-height: 48px;
-      transition: all $transition-fast $ease-out;
+      // 优化：只过渡背景色，减少计算量
+      transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);
+      // 使用 will-change 优化，但限制在 hover 时才激活
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
 
       &:hover {
         background-color: var(--color-bg-hover);
+        will-change: background-color;
+      }
+
+      // 鼠标离开时清除 will-change
+      &:not(:hover) {
+        will-change: auto;
       }
 
       &.is-active {
@@ -198,6 +214,33 @@ const handleToggle = () => {
           background-color: var(--color-primary-light);
         }
       }
+
+      // 箭头旋转动画
+      :deep(.el-sub-menu__title .el-sub-menu__icon-arrow) {
+        transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      :deep(.el-sub-menu.is-opened > .el-sub-menu__title .el-sub-menu__icon-arrow) {
+        transform: rotate(180deg);
+      }
+    }
+
+    // 折叠状态：平滑隐藏文字与箭头（注意：el-menu--collapse 在同一个元素上）
+    &.el-menu--collapse {
+      :deep(.el-menu-item span),
+      :deep(.el-sub-menu__title span) {
+        max-width: 0;
+        opacity: 0;
+        transform: translateX(-20px);
+        pointer-events: none;
+      }
+
+      :deep(.el-sub-menu__icon-arrow) {
+        max-width: 0;
+        opacity: 0;
+        transform: translateX(-20px);
+        pointer-events: none;
+      }
     }
   }
 
@@ -208,11 +251,20 @@ const handleToggle = () => {
     justify-content: center;
     border-top: 1px solid var(--color-border);
     cursor: pointer;
-    transition: all $transition-fast $ease-out;
+    // 优化：快速响应的过渡
+    transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
+    // GPU 加速
+    transform: translateZ(0);
+    backface-visibility: hidden;
 
     &:hover {
       background-color: var(--color-bg-hover);
+      will-change: background-color;
+    }
+
+    &:not(:hover) {
+      will-change: auto;
     }
 
     .el-icon {

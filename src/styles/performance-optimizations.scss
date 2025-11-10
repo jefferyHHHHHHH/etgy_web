@@ -1,0 +1,125 @@
+// 性能优化样式 - 覆盖 Element Plus 默认样式
+
+// 优化 Element Plus 菜单的过渡效果
+.el-menu {
+  // 优化菜单项的过渡
+  .el-menu-item,
+  .el-sub-menu__title {
+    // 覆盖 Element Plus 的默认 transition: all，只过渡必要的属性
+    transition:
+      background-color 100ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 100ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 100ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+
+    // 启用硬件加速
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+
+    // 优化字体渲染
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    // 减少重绘
+    contain: layout style paint;
+
+    // 仅在需要时使用 will-change
+    &:hover {
+      will-change: background-color;
+    }
+
+    &:not(:hover) {
+      will-change: auto;
+    }
+  }
+
+  // 优化子菜单动画
+  .el-sub-menu {
+    .el-menu {
+      
+    }
+  }
+
+  // 优化图标
+  .el-icon {
+    // 防止图标动画引起重绘
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+// 优化滚动条性能
+.el-scrollbar {
+  &__wrap {
+    // 使用 GPU 加速滚动
+    transform: translateZ(0);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__thumb {
+    // 优化滚动条拖动性能
+    transition: opacity 120ms ease-out !important;
+    will-change: opacity;
+
+    &:hover {
+      transition: opacity 80ms ease-out !important;
+    }
+  }
+}
+
+// 全局性能优化
+.sidebar {
+  // 隔离侧边栏的渲染层
+  isolation: isolate;
+
+  // 创建新的层叠上下文
+  position: relative;
+  z-index: 1;
+
+  // 减少布局计算
+  contain: layout style;
+
+  // 优化宽度变化动画
+  // 使用 will-change 在变化时提示浏览器
+  &:not(.sidebar--collapsed) {
+    will-change: width;
+  }
+
+  &__menu {
+    // 防止菜单项影响外部布局
+    contain: layout style paint;
+  }
+}
+
+// 优化主内容区的margin过渡
+.app-layout__main {
+  // 确保margin变化也使用硬件加速
+  will-change: margin-left;
+}
+
+// 优化交互响应速度
+* {
+  // 移除移动端的点击延迟
+  touch-action: manipulation;
+}
+
+// 减少动画的视觉延迟
+@media (prefers-reduced-motion: no-preference) {
+  .el-menu-item,
+  .el-sub-menu__title {
+    // 使用更快的缓动函数
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+    transition-duration: 80ms !important;
+  }
+}
+
+// 针对低性能设备的优化
+@media (prefers-reduced-motion: reduce) {
+  .el-menu-item,
+  .el-sub-menu__title,
+  .sidebar,
+  .sidebar__toggle {
+    transition: none !important;
+    animation: none !important;
+  }
+}

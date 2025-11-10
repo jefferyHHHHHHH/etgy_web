@@ -76,7 +76,8 @@ if (typeof window !== 'undefined') {
     display: flex;
     flex-direction: column;
     margin-left: $sidebar-width-expanded;
-    transition: margin-left $transition-base $ease-out;
+    // 展开收起动画，与侧边栏同步
+    transition: margin-left 300ms cubic-bezier(0.4, 0, 0.2, 1);
     min-width: 0; // 防止 flex 子元素溢出
   }
 
