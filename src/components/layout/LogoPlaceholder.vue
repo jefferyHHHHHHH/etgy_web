@@ -2,15 +2,13 @@
   <div class="logo-placeholder" :class="{ 'logo-placeholder--collapsed': collapsed }">
     <!-- Logo 图标 -->
     <div class="logo-placeholder__icon">
-      <el-icon size="32">
-        <School />
-      </el-icon>
+      <img src="@/assets/logo.jpg" alt="益路同行" class="logo-placeholder__image" />
     </div>
 
     <!-- Logo 文字（折叠时隐藏） -->
     <transition name="logo-text">
       <div v-if="!collapsed" class="logo-placeholder__text">
-        <h1 class="logo-placeholder__title">儿童教育</h1>
+        <h1 class="logo-placeholder__title">益路同行</h1>
         <p class="logo-placeholder__subtitle">管理后台</p>
       </div>
     </transition>
@@ -18,8 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { School } from '@element-plus/icons-vue'
-
 interface Props {
   collapsed?: boolean
 }
@@ -42,10 +38,16 @@ defineProps<Props>()
     width: 40px;
     height: 40px;
     border-radius: $radius-lg;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-    color: white;
+    background: white;
     flex-shrink: 0;
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__text {
