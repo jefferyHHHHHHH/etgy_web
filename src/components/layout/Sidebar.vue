@@ -10,7 +10,7 @@
       <el-menu
         :default-active="activeMenu"
         :collapse="collapsed"
-        :collapse-transition="true"
+        :collapse-transition="false"
         :unique-opened="true"
         mode="vertical"
         class="sidebar__menu"
@@ -213,6 +213,33 @@ const handleToggle = () => {
         &.is-active {
           background-color: var(--color-primary-light);
         }
+      }
+
+      // 箭头旋转动画
+      :deep(.el-sub-menu__title .el-sub-menu__icon-arrow) {
+        transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      :deep(.el-sub-menu.is-opened > .el-sub-menu__title .el-sub-menu__icon-arrow) {
+        transform: rotate(180deg);
+      }
+    }
+
+    // 折叠状态：平滑隐藏文字与箭头（注意：el-menu--collapse 在同一个元素上）
+    &.el-menu--collapse {
+      :deep(.el-menu-item span),
+      :deep(.el-sub-menu__title span) {
+        max-width: 0;
+        opacity: 0;
+        transform: translateX(-20px);
+        pointer-events: none;
+      }
+
+      :deep(.el-sub-menu__icon-arrow) {
+        max-width: 0;
+        opacity: 0;
+        transform: translateX(-20px);
+        pointer-events: none;
       }
     }
   }
