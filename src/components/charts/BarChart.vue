@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
-import VChart from 'vue-echarts'
 import { use } from 'echarts/core'
-import {
-  CanvasRenderer
-} from 'echarts/renderers'
-import {
-  BarChart as BarChartModule
-} from 'echarts/charts'
+import { CanvasRenderer } from 'echarts/renderers'
+import { BarChart as BarChartModule } from 'echarts/charts'
 import {
   TitleComponent,
   TooltipComponent,
   LegendComponent,
-  GridComponent
+  GridComponent,
 } from 'echarts/components'
 
 // 注册必需的组件
@@ -22,7 +17,7 @@ use([
   TitleComponent,
   TooltipComponent,
   LegendComponent,
-  GridComponent
+  GridComponent,
 ])
 
 interface Props {
@@ -40,8 +35,8 @@ const props = withDefaults(defineProps<Props>(), {
   title: '柱状图',
   data: () => ({
     categories: [],
-    series: []
-  })
+    series: [],
+  }),
 })
 
 const option = ref({})
@@ -50,38 +45,38 @@ const updateChart = () => {
   option.value = {
     title: {
       text: props.title,
-      left: 'center'
+      left: 'center',
     },
     tooltip: {
       trigger: 'axis',
       axisPointer: {
-        type: 'shadow'
-      }
+        type: 'shadow',
+      },
     },
     legend: {
-      bottom: 0
+      bottom: 0,
     },
     grid: {
       left: '3%',
       right: '4%',
       bottom: '10%',
-      containLabel: true
+      containLabel: true,
     },
     xAxis: {
       type: 'category',
-      data: props.data.categories
+      data: props.data.categories,
     },
     yAxis: {
-      type: 'value'
+      type: 'value',
     },
     series: props.data.series.map(item => ({
       name: item.name,
       type: 'bar',
       data: item.data,
       emphasis: {
-        focus: 'series'
-      }
-    }))
+        focus: 'series',
+      },
+    })),
   }
 }
 

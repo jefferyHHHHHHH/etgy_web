@@ -146,7 +146,11 @@ const handleToggle = () => {
   border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  transition: width $transition-base $ease-out;
+  // 优化：只过渡宽度，使用更快的动画
+  transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  // 使用 GPU 加速
+  transform: translateZ(0);
+  backface-visibility: hidden;
   z-index: $z-index-fixed;
   overflow: hidden;
 
@@ -176,10 +180,21 @@ const handleToggle = () => {
     .el-sub-menu__title {
       height: 48px;
       line-height: 48px;
-      transition: all $transition-fast $ease-out;
+      // 优化：只过渡背景色，减少计算量
+      transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);
+      // 使用 will-change 优化，但限制在 hover 时才激活
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-font-smoothing: antialiased;
 
       &:hover {
         background-color: var(--color-bg-hover);
+        will-change: background-color;
+      }
+
+      // 鼠标离开时清除 will-change
+      &:not(:hover) {
+        will-change: auto;
       }
 
       &.is-active {
@@ -208,11 +223,20 @@ const handleToggle = () => {
     justify-content: center;
     border-top: 1px solid var(--color-border);
     cursor: pointer;
-    transition: all $transition-fast $ease-out;
+    // 优化：快速响应的过渡
+    transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
+    // GPU 加速
+    transform: translateZ(0);
+    backface-visibility: hidden;
 
     &:hover {
       background-color: var(--color-bg-hover);
+      will-change: background-color;
+    }
+
+    &:not(:hover) {
+      will-change: auto;
     }
 
     .el-icon {
