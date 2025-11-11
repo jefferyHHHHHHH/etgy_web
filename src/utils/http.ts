@@ -127,20 +127,20 @@ instance.interceptors.response.use(
 )
 
 export const http = {
-  get<T = any>(url: string, params?: any, config?: ExtendedAxiosRequestConfig) {
-    return instance.get<T>(url, { params, ...(config || {}) })
+  get<T = any>(url: string, params?: any, config?: ExtendedAxiosRequestConfig): Promise<T> {
+    return instance.get<T>(url, { params, ...(config || {}) }).then(r => r as unknown as T)
   },
-  post<T = any>(url: string, data?: any, config?: ExtendedAxiosRequestConfig) {
-    return instance.post<T>(url, data, config)
+  post<T = any>(url: string, data?: any, config?: ExtendedAxiosRequestConfig): Promise<T> {
+    return instance.post<T>(url, data, config).then(r => r as unknown as T)
   },
-  put<T = any>(url: string, data?: any, config?: ExtendedAxiosRequestConfig) {
-    return instance.put<T>(url, data, config)
+  put<T = any>(url: string, data?: any, config?: ExtendedAxiosRequestConfig): Promise<T> {
+    return instance.put<T>(url, data, config).then(r => r as unknown as T)
   },
-  patch<T = any>(url: string, data?: any, config?: ExtendedAxiosRequestConfig) {
-    return instance.patch<T>(url, data, config)
+  patch<T = any>(url: string, data?: any, config?: ExtendedAxiosRequestConfig): Promise<T> {
+    return instance.patch<T>(url, data, config).then(r => r as unknown as T)
   },
-  delete<T = any>(url: string, params?: any, config?: ExtendedAxiosRequestConfig) {
-    return instance.delete<T>(url, { params, ...(config || {}) })
+  delete<T = any>(url: string, params?: any, config?: ExtendedAxiosRequestConfig): Promise<T> {
+    return instance.delete<T>(url, { params, ...(config || {}) }).then(r => r as unknown as T)
   },
 }
 

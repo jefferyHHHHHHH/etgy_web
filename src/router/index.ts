@@ -12,7 +12,6 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    name: 'home',
     redirect: '/dashboard',
   },
   {
@@ -94,7 +93,7 @@ router.beforeEach(async (to, _from, next) => {
     const { pinia } = await import('../stores')
     const { notify } = await import('../utils/notify')
     const { usePermsStore } = await import('../stores/modules/perms')
-    const user = useUserStore(pinia)
+    const user = useUserStore(pinia) as any
     if (to.meta?.public) return next()
     if (to.meta?.requiresAuth && !user.isAuthenticated) {
       notify.warning('请先登录')
@@ -102,7 +101,7 @@ router.beforeEach(async (to, _from, next) => {
     }
     const need = (to.meta?.perms as string[] | undefined) || []
     if (need.length > 0) {
-      const perms = usePermsStore(pinia)
+      const perms = usePermsStore(pinia) as any
       const ok = need.some(p => perms.has(p))
       if (!ok) {
         notify.warning('无权限访问该页面')

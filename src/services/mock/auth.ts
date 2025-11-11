@@ -1,10 +1,13 @@
 import { delay } from '../_config'
 
-export async function login(data: { username: string; password: string }) {
+export async function login(data: { username: string; password: string; role?: 'volunteer' | 'admin' }) {
   await delay(300)
   return {
     token: 'mock-jwt-' + Date.now(),
-    user: { uid: 'u_' + Date.now(), roleIds: ['r_admin'] },
+    user: {
+      uid: 'u_' + Date.now(),
+      roleIds: [data.role === 'admin' ? 'r_admin' : 'r_volunteer'],
+    },
     permissions: [
       'menu.view:*',
       'video.viewAll',

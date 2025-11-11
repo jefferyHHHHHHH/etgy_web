@@ -2,7 +2,7 @@ import { http } from '../utils/http'
 import { USE_MOCK } from './_config'
 import * as mock from './mock/auth'
 
-export function loginApi(p: { username: string; password: string }) {
+export function loginApi(p: { username: string; password: string; role?: 'volunteer' | 'admin' }) {
   return USE_MOCK ? mock.login(p) : http.post('/auth/login', p)
 }
 
