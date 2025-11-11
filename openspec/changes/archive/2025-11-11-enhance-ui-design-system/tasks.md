@@ -95,34 +95,34 @@
 
 ### 3.1 审核工作台优化
 
-- [ ] 3.1.1 重构 `views/videos/Reviews.vue`
-- [ ] 3.1.2 实现左右分栏布局（左侧列表，右侧详情）
-- [ ] 3.1.3 添加视频预览和详情展示
-- [ ] 3.1.4 优化审核操作（通过/驳回 + 意见输入）
+- [x] 3.1.1 重构 `views/videos/Reviews.vue`
+- [x] 3.1.2 实现左右分栏布局（左侧列表，右侧详情）
+- [x] 3.1.3 添加视频预览和详情展示
+- [x] 3.1.4 优化审核操作（通过/驳回 + 意见输入）
 - [ ] 3.1.5 添加批量审核功能
 
 ### 3.2 直播申请页面优化
 
-- [ ] 3.2.1 重构 `views/live/Applications.vue`，使用 `PageContainer`
-- [ ] 3.2.2 使用 `SearchForm`、`StatusTag`、`TableActions` 组件
-- [ ] 3.2.3 添加空状态和加载状态
+- [x] 3.2.1 重构 `views/live/Applications.vue`，使用 `PageContainer`
+- [x] 3.2.2 使用 `SearchForm`、`StatusTag`、`TableActions` 组件
+- [x] 3.2.3 添加空状态和加载状态
 
 ### 3.3 志愿者管理优化
 
-- [ ] 3.3.1 重构 `views/volunteers/List.vue`，使用 `PageContainer`
-- [ ] 3.3.2 使用通用组件优化列表和搜索
-- [ ] 3.3.3 添加志愿者头像占位图
+- [x] 3.3.1 重构 `views/volunteers/List.vue`，使用 `PageContainer`
+- [x] 3.3.2 使用通用组件优化列表和搜索
+- [x] 3.3.3 添加志愿者头像占位图
 
 ### 3.4 学院管理优化
 
-- [ ] 3.4.1 重构 `views/settings/Colleges.vue`，使用 `PageContainer`
-- [ ] 3.4.2 使用通用组件优化列表和表单
+- [x] 3.4.1 重构 `views/settings/Colleges.vue`，使用 `PageContainer`
+- [x] 3.4.2 使用通用组件优化列表和表单
 
 ### 3.5 审计日志优化
 
-- [ ] 3.5.1 重构 `views/audit/List.vue`，使用 `PageContainer`
-- [ ] 3.5.2 添加日期范围筛选
-- [ ] 3.5.3 优化日志展示（时间格式、操作类型标签）
+- [x] 3.5.1 重构 `views/audit/List.vue`，使用 `PageContainer`
+- [x] 3.5.2 添加日期范围筛选
+- [x] 3.5.3 优化日志展示（时间格式、操作类型标签）
 
 ### 3.6 虚拟滚动实现
 
@@ -132,10 +132,10 @@
 
 ### 3.7 快捷键系统
 
-- [ ] 3.7.1 创建 `src/composables/useHotkeys.ts`
-- [ ] 3.7.2 实现全局搜索快捷键（Ctrl+K / Cmd+K）
-- [ ] 3.7.3 实现关闭弹窗快捷键（Esc）
-- [ ] 3.7.4 实现保存表单快捷键（Ctrl+S / Cmd+S）
+- [x] 3.7.1 创建 `src/composables/useHotkeys.ts`
+- [x] 3.7.2 实现全局搜索快捷键（Ctrl+K / Cmd+K）
+- [x] 3.7.3 实现关闭弹窗快捷键（Esc）
+- [x] 3.7.4 实现保存表单快捷键（Ctrl+S / Cmd+S）
 - [ ] 3.7.5 在帮助菜单中添加快捷键说明
 
 ---

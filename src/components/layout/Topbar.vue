@@ -74,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import {
@@ -90,6 +90,7 @@ import {
 import Breadcrumb from './Breadcrumb.vue'
 import { useUserStore } from '@/stores/modules/user'
 import { useSettingsStore } from '@/stores/modules/settings'
+import { useHotkeys } from '@/composables/useHotkeys'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -153,6 +154,20 @@ const handleLogout = async () => {
     ElMessage.error('退出登录失败')
   }
 }
+
+// 全局搜索占位（Ctrl+K）
+const searchOpen = ref(false)
+const disposeSearchHotkey = useHotkeys('ctrl+k', e => {
+  e.preventDefault()
+  searchOpen.value = true
+}, { preventDefault: true })
+const disposeEsc = useHotkeys('esc', () => {
+  if (searchOpen.value) searchOpen.value = false
+})
+onBeforeUnmount(() => {
+  disposeSearchHotkey()
+  disposeEsc()
+})
 </script>
 
 <style scoped lang="scss">
@@ -215,3 +230,87 @@ const handleLogout = async () => {
   }
 }
 </style>
+
+<template>
+  <header class="topbar">
+    <!-- 左侧：面包屑 -->
+    <div class="topbar__left">
+      <Breadcrumb />
+    </div>
+
+    <!-- 右侧：用户信息和操作 -->
+    <div class="topbar__right">
+      <!-- 主题切换 -->
+      <el-tooltip :content="isDark ? '切换到亮色模式' : '切换到暗色模式'" placement="bottom">
+        <el-button text circle class="topbar__action" @click="toggleTheme">
+          <el-icon size="20">
+            <Sunny v-if="isDark" />
+            <Moon v-else />
+          </el-icon>
+        </el-button>
+      </el-tooltip>
+
+      <!-- 语言切换（可选） -->
+      <el-dropdown trigger="click" @command="handleLanguageChange">
+        <el-button text circle class="topbar__action">
+          <el-icon size="20"><Operation /></el-icon>
+        </el-button>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="zh-CN" :disabled="locale === 'zh-CN'">
+              简体中文
+            </el-dropdown-item>
+            <el-dropdown-item command="en-US" :disabled="locale === 'en-US'">
+              English
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+
+      <!-- 全屏切换 -->
+      <el-tooltip content="全屏" placement="bottom">
+        <el-button text circle class="topbar__action" @click="toggleFullscreen">
+          <el-icon size="20">
+            <FullScreen />
+          </el-icon>
+        </el-button>
+      </el-tooltip>
+
+      <!-- 用户菜单 -->
+      <el-dropdown trigger="click" @command="handleUserCommand">
+        <div class="topbar__user">
+          <el-avatar :size="32" :src="userAvatar">
+            {{ userName.charAt(0) }}
+          </el-avatar>
+          <span class="topbar__username">{{ userName }}</span>
+          <el-icon><CaretBottom /></el-icon>
+        </div>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="profile">
+              <el-icon><User /></el-icon>
+              个人资料
+            </el-dropdown-item>
+            <el-dropdown-item command="settings">
+              <el-icon><Setting /></el-icon>
+              设置
+            </el-dropdown-item>
+            <el-dropdown-item divided command="logout">
+              <el-icon><SwitchButton /></el-icon>
+              退出登录
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
+  </header>
+
+  <!-- 全局搜索（占位实现） -->
+  <el-dialog v-model="searchOpen" title="全局搜索 (Ctrl+K)" width="520px">
+    <el-input placeholder="输入关键词..." autofocus />
+    <template #footer>
+      <el-button @click="searchOpen = false">关闭 (Esc)</el-button>
+      <el-button type="primary" @click="searchOpen = false">搜索</el-button>
+    </template>
+  </el-dialog>
+</template>

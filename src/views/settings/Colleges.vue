@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { listColleges, upsertCollege } from '../../services/college'
 import { ElMessage } from 'element-plus'
+import PageContainer from '../../components/common/PageContainer.vue'
+import TableActions from '../../components/common/TableActions.vue'
 
 const loading = ref(false)
 const list = ref<any[]>([])
@@ -32,24 +34,22 @@ async function onSave() {
 </script>
 
 <template>
-  <div class="colleges-page">
-    <el-card shadow="never">
-      <template #header>
-        <div style="display: flex; align-items: center; justify-content: space-between">
-          <span>学院管理</span>
-          <el-button type="primary" @click="() => openEdit()">新增学院</el-button>
-        </div>
+  <PageContainer title="学院管理">
+    <TableActions @refresh="fetch">
+      <template #primary>
+        <el-button type="primary" @click="() => openEdit()">新增学院</el-button>
       </template>
-      <el-table v-loading="loading" :data="list" stripe>
-        <el-table-column prop="name" label="学院名称" min-width="220" />
-        <el-table-column prop="status" label="状态" width="120" />
-        <el-table-column label="操作" width="140">
-          <template #default="{ row }">
-            <el-button link type="primary" @click="() => openEdit(row)">编辑</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </el-card>
+    </TableActions>
+
+    <el-table v-loading="loading" :data="list" stripe>
+      <el-table-column prop="name" label="学院名称" min-width="220" />
+      <el-table-column prop="status" label="状态" width="120" />
+      <el-table-column label="操作" width="140">
+        <template #default="{ row }">
+          <el-button link type="primary" @click="() => openEdit(row)">编辑</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
 
     <el-dialog v-model="dialog" title="学院信息" width="420px">
       <el-form label-width="84px">
@@ -61,5 +61,5 @@ async function onSave() {
         <el-button type="primary" @click="onSave">保存</el-button>
       </template>
     </el-dialog>
-  </div>
+  </PageContainer>
 </template>
