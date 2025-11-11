@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
 import { ElMessage } from 'element-plus'
 import { createVideo } from '../../services/video'
+import { useHotkeys } from '../../composables/useHotkeys'
 
 const form = ref({
   title: '',
@@ -34,6 +35,10 @@ async function onSubmit() {
     submitting.value = false
   }
 }
+
+// 快捷键：Ctrl+S 保存
+const disposeHotkey = useHotkeys('ctrl+s', () => onSubmit(), { preventDefault: true })
+onBeforeUnmount(() => disposeHotkey())
 </script>
 
 <template>

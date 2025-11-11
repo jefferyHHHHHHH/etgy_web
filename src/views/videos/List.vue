@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import { listVideos, publishVideo, unpublishVideo } from '../../services/video'
 import { ElMessage } from 'element-plus'
 
@@ -18,6 +18,30 @@ const statuses = [
   { label: '已发布', value: 'published' },
   { label: '已下架', value: 'unpublished' },
 ]
+
+// 可选：虚拟滚动（el-table-v2）
+const useVirtual = ref(false)
+const v2Columns = computed(() => {
+  return [
+    { key: 'title', dataKey: 'title', title: '标题', width: 260 },
+    { key: 'duration', dataKey: 'duration', title: '时长(s)', width: 120 },
+    {
+      key: 'createdAt',
+      dataKey: 'createdAt',
+      title: '创建时间',
+      width: 200,
+      cellRenderer: ({ cellData }: any) => new Date(cellData).toLocaleString(),
+    },
+    {
+      key: 'status',
+      dataKey: 'status',
+      title: '状态',
+      width: 140,
+      cellRenderer: ({ cellData }: any) =>
+        `<span class="el-tag el-tag--${statusTagType(cellData)} el-tag--light">${cellData}</span>`,
+    },
+  ]
+})
 
 async function fetch() {
   loading.value = true
@@ -56,9 +80,9 @@ function statusTagType(s: string) {
     case 'published':
       return 'success'
     case 'unpublished':
-      return ''
+      return 'info'
   }
-  return ''
+  return 'info'
 }
 
 async function onPublish(row: any) {
@@ -99,12 +123,27 @@ async function onUnpublish(row: any) {
 
     <el-card shadow="never" style="margin-top: 12px">
       <template #header>
-        <div style="display: flex; align-items: center; justify-content: space-between">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
           <span>视频列表</span>
-          <RouterLink to="/videos/new"><el-button type="primary">新建视频</el-button></RouterLink>
+          <div style="display:flex; align-items:center; gap:8px">
+            <el-switch v-model="useVirtual" active-text="虚拟滚动" />
+            <RouterLink to="/videos/new"><el-button type="primary">新建视频</el-button></RouterLink>
+          </div>
         </div>
       </template>
-      <el-table v-loading="loading" :data="data" stripe>
+
+      <el-table-v2
+        v-if="useVirtual"
+        :data="data"
+        :columns="(v2Columns as any)"
+        row-key="id"
+        :header-height="48"
+        :row-height="48"
+        fixed
+        style="height: 520px"
+      />
+
+      <el-table v-else v-loading="loading" :data="data" stripe>
         <el-table-column prop="title" label="标题" min-width="220" />
         <el-table-column prop="duration" label="时长(s)" width="120" />
         <el-table-column prop="createdAt" label="创建时间" width="180">
