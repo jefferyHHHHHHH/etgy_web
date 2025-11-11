@@ -2,13 +2,17 @@
 import { ref, onMounted, watch } from 'vue'
 import { getLiveApplications, reviewLiveApplication } from '../../services/live'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import PageContainer from '../../components/common/PageContainer.vue'
+import SearchForm from '../../components/common/SearchForm.vue'
+import StatusTag from '../../components/common/StatusTag.vue'
+import TableActions from '../../components/common/TableActions.vue'
 
 const loading = ref(false)
 const list = ref<any[]>([])
 const total = ref(0)
 const page = ref(1)
 const pageSize = ref(10)
-const status = ref('')
+const q = ref({ status: '' })
 
 async function fetch() {
   loading.value = true
@@ -16,7 +20,7 @@ async function fetch() {
     const res = await getLiveApplications({
       page: page.value,
       pageSize: pageSize.value,
-      status: status.value || undefined,
+      status: q.value.status || undefined,
     })
     list.value = res.items
     total.value = res.total
@@ -47,30 +51,32 @@ async function onReject(row: any) {
 </script>
 
 <template>
-  <el-card shadow="never">
-    <template #header>
-      <div style="display: flex; align-items: center; justify-content: space-between">
-        <div>直播申请</div>
-        <div>
-          <el-select
-            v-model="status"
-            placeholder="状态筛选"
-            clearable
-            style="width: 160px"
-            @change="
-              () => {
-                page = 1
-                fetch()
-              }
-            "
-          >
-            <el-option label="待审" value="pending" />
-            <el-option label="通过" value="approved" />
-            <el-option label="驳回" value="rejected" />
-          </el-select>
-        </div>
-      </div>
-    </template>
+  <PageContainer title="直播申请">
+    <SearchForm
+      v-model="q"
+      :label-width="80"
+      @search="
+        () => {
+          page = 1
+          fetch()
+        }
+      "
+    >
+      <template #default="{ formData }">
+        <el-col :span="8">
+          <el-form-item label="状态">
+            <el-select v-model="formData.status" placeholder="全部" clearable>
+              <el-option label="待审" value="pending" />
+              <el-option label="通过" value="approved" />
+              <el-option label="驳回" value="rejected" />
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </template>
+    </SearchForm>
+
+    <TableActions @refresh="fetch" />
+
     <el-table v-loading="loading" :data="list" stripe>
       <el-table-column prop="subject" label="主题" min-width="240" />
       <el-table-column prop="startTime" label="时间" width="220">
@@ -80,9 +86,9 @@ async function onReject(row: any) {
         >
       </el-table-column>
       <el-table-column prop="status" label="状态" width="120">
-        <template #default="{ row }"
-          ><el-tag type="info">{{ row.status }}</el-tag></template
-        >
+        <template #default="{ row }">
+          <StatusTag :status="row.status" />
+        </template>
       </el-table-column>
       <el-table-column label="操作" width="220">
         <template #default="{ row }">
@@ -113,5 +119,5 @@ async function onReject(row: any) {
         layout="total, sizes, prev, pager, next"
       />
     </div>
-  </el-card>
+  </PageContainer>
 </template>

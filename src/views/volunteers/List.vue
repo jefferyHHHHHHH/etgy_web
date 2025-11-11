@@ -2,12 +2,16 @@
 import { ref, onMounted } from 'vue'
 import { listVolunteers, upsertVolunteer } from '../../services/volunteer'
 import { ElMessage } from 'element-plus'
+import PageContainer from '../../components/common/PageContainer.vue'
+import SearchForm from '../../components/common/SearchForm.vue'
+import TableActions from '../../components/common/TableActions.vue'
 
 const loading = ref(false)
 const list = ref<any[]>([])
 const total = ref(0)
 const page = ref(1)
 const pageSize = ref(10)
+const q = ref({ keyword: '' })
 
 const dialog = ref(false)
 const form = ref({ uid: '', name: '', phone: '', collegeId: 'c_001', status: 'active' })
@@ -40,14 +44,41 @@ async function onSave() {
 </script>
 
 <template>
-  <el-card shadow="never">
-    <template #header>
-      <div style="display: flex; align-items: center; justify-content: space-between">
-        <span>志愿者</span>
+  <PageContainer title="志愿者管理">
+    <SearchForm
+      v-model="q"
+      @search="
+        () => {
+          page = 1
+          fetch()
+        }
+      "
+    >
+      <template #default="{ formData }">
+        <el-col :span="8">
+          <el-form-item label="关键词">
+            <el-input
+              v-model="formData.keyword"
+              placeholder="姓名/电话"
+              clearable
+              @keyup.enter="$emit('search', formData)"
+            />
+          </el-form-item>
+        </el-col>
+      </template>
+      <template #actions>
         <el-button type="primary" @click="() => openEdit()">新增</el-button>
-      </div>
-    </template>
+      </template>
+    </SearchForm>
+
+    <TableActions @refresh="fetch" />
+
     <el-table v-loading="loading" :data="list" stripe>
+      <el-table-column label="头像" width="80">
+        <template #default="{ row }">
+          <el-avatar :size="32">{{ row.name?.charAt(0) || '志' }}</el-avatar>
+        </template>
+      </el-table-column>
       <el-table-column prop="name" label="姓名" min-width="160" />
       <el-table-column prop="phone" label="电话" width="160" />
       <el-table-column prop="collegeId" label="学院" width="160" />
@@ -69,17 +100,17 @@ async function onSave() {
         layout="total, sizes, prev, pager, next"
       />
     </div>
-  </el-card>
 
-  <el-dialog v-model="dialog" title="志愿者信息" width="420px">
-    <el-form label-width="84px">
-      <el-form-item label="姓名"><el-input v-model="form.name" /></el-form-item>
-      <el-form-item label="电话"><el-input v-model="form.phone" /></el-form-item>
-      <el-form-item label="学院"><el-input v-model="form.collegeId" /></el-form-item>
-    </el-form>
-    <template #footer>
-      <el-button @click="dialog = false">取消</el-button>
-      <el-button type="primary" @click="onSave">保存</el-button>
-    </template>
-  </el-dialog>
+    <el-dialog v-model="dialog" title="志愿者信息" width="420px">
+      <el-form label-width="84px">
+        <el-form-item label="姓名"><el-input v-model="form.name" /></el-form-item>
+        <el-form-item label="电话"><el-input v-model="form.phone" /></el-form-item>
+        <el-form-item label="学院"><el-input v-model="form.collegeId" /></el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="dialog = false">取消</el-button>
+        <el-button type="primary" @click="onSave">保存</el-button>
+      </template>
+    </el-dialog>
+  </PageContainer>
 </template>

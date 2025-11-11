@@ -79,7 +79,7 @@ const statusConfig = computed(() => {
   return (
     finalStatusMap.value[props.status] || {
       label: String(props.status),
-      type: 'default' as StatusType,
+      type: 'info' as StatusType,
     }
   )
 })
