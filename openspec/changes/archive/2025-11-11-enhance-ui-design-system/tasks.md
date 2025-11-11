@@ -4,43 +4,43 @@
 
 ### 1.1 设计系统变量和样式
 
-- [ ] 1.1.1 创建 `src/styles/` 目录结构
-- [ ] 1.1.2 创建 `variables.scss`：定义间距、字号等 SCSS 变量
-- [ ] 1.1.3 创建 `theme.css`：定义颜色、阴影等 CSS 变量（支持亮色/暗色主题）
-- [ ] 1.1.4 创建 `mixins.scss`：封装常用 SCSS mixins（响应式断点、文本省略等）
-- [ ] 1.1.5 创建 `global.scss`：全局样式（重置、盒模型、滚动等）
-- [ ] 1.1.6 在 `main.ts` 中引入样式文件
+- [x] 1.1.1 创建 `src/styles/` 目录结构
+- [x] 1.1.2 创建 `variables.scss`：定义间距、字号等 SCSS 变量
+- [x] 1.1.3 创建 `theme.css`：定义颜色、阴影等 CSS 变量（支持亮色/暗色主题）
+- [x] 1.1.4 创建 `mixins.scss`：封装常用 SCSS mixins（响应式断点、文本省略等）
+- [x] 1.1.5 创建 `global.scss`：全局样式（重置、盒模型、滚动等）
+- [x] 1.1.6 在 `main.ts` 中引入样式文件
 
 ### 1.2 Element Plus 主题定制
 
-- [ ] 1.2.1 创建 `src/styles/element-override.scss`
-- [ ] 1.2.2 覆盖 Element Plus 主色、圆角等变量
-- [ ] 1.2.3 配置 Element Plus 暗色模式变量
+- [x] 1.2.1 创建 `src/styles/element-override.scss`
+- [x] 1.2.2 覆盖 Element Plus 主色、圆角等变量
+- [x] 1.2.3 配置 Element Plus 暗色模式变量
 
 ### 1.3 布局组件开发
 
-- [ ] 1.3.1 创建 `src/components/layout/AppLayout.vue`（根布局）
-- [ ] 1.3.2 创建 `src/components/layout/Sidebar.vue`（侧边栏）
-- [ ] 1.3.3 创建 `src/components/layout/Topbar.vue`（顶部栏）
-- [ ] 1.3.4 创建 `src/components/layout/Breadcrumb.vue`（面包屑）
-- [ ] 1.3.5 创建 `src/components/layout/LogoPlaceholder.vue`（Logo 占位）
-- [ ] 1.3.6 实现侧边栏折叠逻辑和状态持久化（localStorage）
+- [x] 1.3.1 创建 `src/components/layout/AppLayout.vue`（根布局）
+- [x] 1.3.2 创建 `src/components/layout/Sidebar.vue`（侧边栏）
+- [x] 1.3.3 创建 `src/components/layout/Topbar.vue`（顶部栏）
+- [x] 1.3.4 创建 `src/components/layout/Breadcrumb.vue`（面包屑）
+- [x] 1.3.5 创建 `src/components/layout/LogoPlaceholder.vue`（Logo 占位）
+- [x] 1.3.6 实现侧边栏折叠逻辑和状态持久化（localStorage）
 
 ### 1.4 通用组件开发
 
-- [ ] 1.4.1 创建 `src/components/common/PageContainer.vue`（页面容器）
-- [ ] 1.4.2 创建 `src/components/common/StatusTag.vue`（状态标签）
-- [ ] 1.4.3 创建 `src/components/common/SearchForm.vue`（搜索表单）
-- [ ] 1.4.4 创建 `src/components/common/TableActions.vue`（表格操作列）
-- [ ] 1.4.5 创建 `src/components/common/EmptyState.vue`（空状态）
+- [x] 1.4.1 创建 `src/components/common/PageContainer.vue`（页面容器）
+- [x] 1.4.2 创建 `src/components/common/StatusTag.vue`（状态标签）
+- [x] 1.4.3 创建 `src/components/common/SearchForm.vue`（搜索表单）
+- [x] 1.4.4 创建 `src/components/common/TableActions.vue`（表格操作列）
+- [x] 1.4.5 创建 `src/components/common/EmptyState.vue`（空状态）
 
 ### 1.5 主题切换功能
 
-- [ ] 1.5.1 创建 `src/stores/modules/theme.ts`（主题状态管理）
-- [ ] 1.5.2 实现主题切换逻辑（亮色/暗色）
-- [ ] 1.5.3 实现主题偏好持久化（localStorage）
-- [ ] 1.5.4 在 `Topbar.vue` 中添加主题切换按钮
-- [ ] 1.5.5 配置主题切换过渡动画
+- [x] 1.5.1 创建 `src/stores/modules/theme.ts`（主题状态管理）
+- [x] 1.5.2 实现主题切换逻辑（亮色/暗色）
+- [x] 1.5.3 实现主题偏好持久化（localStorage）
+- [x] 1.5.4 在 `Topbar.vue` 中添加主题切换按钮
+- [x] 1.5.5 配置主题切换过渡动画
 
 ---
 
@@ -48,46 +48,46 @@
 
 ### 2.1 App.vue 布局改造
 
-- [ ] 2.1.1 重构 `App.vue`，使用 `AppLayout` 组件
-- [ ] 2.1.2 移除旧的顶部导航代码
-- [ ] 2.1.3 配置路由守卫，登录页不使用 AppLayout
-- [ ] 2.1.4 测试路由跳转和权限校验
+- [x] 2.1.1 重构 `App.vue`，使用 `AppLayout` 组件
+- [x] 2.1.2 移除旧的顶部导航代码
+- [x] 2.1.3 配置路由守卫，登录页不使用 AppLayout
+- [x] 2.1.4 测试路由跳转和权限校验
 
 ### 2.2 登录页优化
 
-- [ ] 2.2.1 重构 `Login.vue`，添加 Logo 占位组件
-- [ ] 2.2.2 添加登录表单动画（淡入 + 向上位移）
-- [ ] 2.2.3 优化表单验证和错误提示
-- [ ] 2.2.4 添加暗色模式适配
-- [ ] 2.2.5 添加响应式布局（移动端适配）
+- [x] 2.2.1 重构 `Login.vue`，添加 Logo 占位组件
+- [x] 2.2.2 添加登录表单动画（淡入 + 向上位移）
+- [x] 2.2.3 优化表单验证和错误提示
+- [x] 2.2.4 添加暗色模式适配
+- [x] 2.2.5 添加响应式布局（移动端适配）
 
 ### 2.3 仪表盘优化
 
-- [ ] 2.3.1 安装 ECharts 依赖（`npm install echarts vue-echarts`）
-- [ ] 2.3.2 创建图表组件 `src/components/charts/`
-- [ ] 2.3.3 重构 `Dashboard.vue`，使用 `PageContainer`
-- [ ] 2.3.4 添加图表可视化（折线图：上传趋势，饼图：视频状态分布）
-- [ ] 2.3.5 优化计数卡片样式（图标、颜色、动画）
-- [ ] 2.3.6 添加骨架屏加载状态
-- [ ] 2.3.7 配置图表响应式和主题联动
+- [x] 2.3.1 安装 ECharts 依赖（`npm install echarts vue-echarts`）
+- [x] 2.3.2 创建图表组件 `src/components/charts/`
+- [x] 2.3.3 重构 `Dashboard.vue`，使用 `PageContainer`
+- [x] 2.3.4 添加图表可视化（折线图：上传趋势，饼图：视频状态分布）
+- [x] 2.3.5 优化计数卡片样式（图标、颜色、动画）
+- [x] 2.3.6 添加骨架屏加载状态
+- [x] 2.3.7 配置图表响应式和主题联动
 
 ### 2.4 视频列表优化
 
-- [ ] 2.4.1 重构 `views/videos/List.vue`，使用 `PageContainer`
-- [ ] 2.4.2 使用 `SearchForm` 组件替换现有搜索表单
-- [ ] 2.4.3 使用 `StatusTag` 组件显示视频状态
-- [ ] 2.4.4 使用 `TableActions` 组件优化操作列
-- [ ] 2.4.5 添加视频缩略图预览（封面图）
-- [ ] 2.4.6 添加批量操作功能（批量发布、批量下架）
-- [ ] 2.4.7 添加空状态（`EmptyState`）
-- [ ] 2.4.8 优化加载状态（骨架屏）
+- [x] 2.4.1 重构 `views/videos/List.vue`，使用 `PageContainer`
+- [x] 2.4.2 使用 `SearchForm` 组件替换现有搜索表单
+- [x] 2.4.3 使用 `StatusTag` 组件显示视频状态
+- [x] 2.4.4 使用 `TableActions` 组件优化操作列
+- [x] 2.4.5 添加视频缩略图预览（封面图）
+- [x] 2.4.6 添加批量操作功能（批量发布、批量下架）
+- [x] 2.4.7 添加空状态（`EmptyState`）
+- [x] 2.4.8 优化加载状态（骨架屏）
 
 ### 2.5 视频创建页优化
 
-- [ ] 2.5.1 重构 `views/videos/Create.vue`，使用 `PageContainer`
-- [ ] 2.5.2 优化表单布局和样式
-- [ ] 2.5.3 添加视频封面上传预览
-- [ ] 2.5.4 添加表单保存快捷键（Ctrl+S）
+- [x] 2.5.1 重构 `views/videos/Create.vue`，使用 `PageContainer`
+- [x] 2.5.2 优化表单布局和样式
+- [x] 2.5.3 添加视频封面上传预览
+- [x] 2.5.4 添加表单保存快捷键（Ctrl+S）
 
 ---
 
