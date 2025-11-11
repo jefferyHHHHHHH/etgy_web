@@ -7,5 +7,3 @@ declare module 'pinia' {
     persist?: boolean | PersistedStateOptions | PersistedStateOptions[]
   }
 }
-
-
