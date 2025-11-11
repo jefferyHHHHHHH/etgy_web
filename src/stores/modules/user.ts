@@ -18,15 +18,15 @@ export const useUserStore = defineStore('user', {
     userName: state => state.profile?.name ?? '未登录',
   },
   actions: {
-    async login(username: string, password: string) {
-      const res = await loginApi({ username, password })
+    async login(username: string, password: string, role?: 'volunteer' | 'admin') {
+      const res = await loginApi({ username, password, role })
       this.token = res.token
       this.profile = {
         id: res.user.uid,
         name: username,
-        role: (res.user.roleIds?.[0] || 'user') as any,
+        role: ((role as any) || res.user.roleIds?.[0] || 'user') as any,
       }
-      const perms = usePermsStore()
+      const perms = usePermsStore() as any
       perms.setPerms(res.permissions || [])
     },
     async logout() {
@@ -35,7 +35,7 @@ export const useUserStore = defineStore('user', {
       } catch {}
       this.token = null
       this.profile = null
-      const perms = usePermsStore()
+      const perms = usePermsStore() as any
       perms.clear()
     },
     async restore() {
@@ -47,7 +47,7 @@ export const useUserStore = defineStore('user', {
           name: this.profile?.name || '用户',
           role: (res.user.roleIds?.[0] || 'user') as any,
         }
-        const perms = usePermsStore()
+        const perms = usePermsStore() as any
         perms.setPerms(res.permissions || [])
       } catch {
         await this.logout()
@@ -56,5 +56,5 @@ export const useUserStore = defineStore('user', {
   },
   persist: {
     paths: ['token', 'profile'],
-  },
+  } as any,
 })
