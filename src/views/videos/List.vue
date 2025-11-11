@@ -56,9 +56,9 @@ function statusTagType(s: string) {
     case 'published':
       return 'success'
     case 'unpublished':
-      return ''
+      return 'info'
   }
-  return ''
+  return 'info'
 }
 
 async function onPublish(row: any) {
