@@ -87,17 +87,17 @@ async function onSave() {
         layout="total, sizes, prev, pager, next"
       />
     </div>
-  </PageContainer>
 
-  <el-dialog v-model="dialog" title="志愿者信息" width="420px">
-    <el-form label-width="84px">
-      <el-form-item label="姓名"><el-input v-model="form.name" /></el-form-item>
-      <el-form-item label="电话"><el-input v-model="form.phone" /></el-form-item>
-      <el-form-item label="学院"><el-input v-model="form.collegeId" /></el-form-item>
-    </el-form>
-    <template #footer>
-      <el-button @click="dialog = false">取消</el-button>
-      <el-button type="primary" @click="onSave">保存</el-button>
-    </template>
-  </el-dialog>
+    <el-dialog v-model="dialog" title="志愿者信息" width="420px">
+      <el-form label-width="84px">
+        <el-form-item label="姓名"><el-input v-model="form.name" /></el-form-item>
+        <el-form-item label="电话"><el-input v-model="form.phone" /></el-form-item>
+        <el-form-item label="学院"><el-input v-model="form.collegeId" /></el-form-item>
+      </el-form>
+      <template #footer>
+        <el-button @click="dialog = false">取消</el-button>
+        <el-button type="primary" @click="onSave">保存</el-button>
+      </template>
+    </el-dialog>
+  </PageContainer>
 </template>
