@@ -125,7 +125,7 @@ async function onUnpublish(row: any) {
       <template #header>
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
           <span>视频列表</span>
-          <div style="display:flex; align-items:center; gap:8px">
+          <div style="display: flex; align-items: center; gap: 8px">
             <el-switch v-model="useVirtual" active-text="虚拟滚动" />
             <RouterLink to="/videos/new"><el-button type="primary">新建视频</el-button></RouterLink>
           </div>
@@ -135,7 +135,7 @@ async function onUnpublish(row: any) {
       <el-table-v2
         v-if="useVirtual"
         :data="data"
-        :columns="(v2Columns as any)"
+        :columns="v2Columns as any"
         row-key="id"
         :header-height="48"
         :row-height="48"

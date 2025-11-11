@@ -65,7 +65,9 @@ async function onBatchReject() {
     .then(r => r.value)
     .catch(() => null)
   if (reason === null) return
-  await Promise.all(selection.value.map(r => reviewVideo({ videoId: r.id, result: 'rejected', reason })))
+  await Promise.all(
+    selection.value.map(r => reviewVideo({ videoId: r.id, result: 'rejected', reason }))
+  )
   ElMessage.success('已批量驳回')
   fetch()
 }
@@ -80,7 +82,7 @@ async function onBatchReject() {
           <template #header>
             <div class="flex-between">
               <span>待审列表</span>
-              <div style="display:flex; gap:8px;">
+              <div style="display: flex; gap: 8px">
                 <el-button :loading="loading" @click="fetch">刷新</el-button>
                 <el-button type="success" plain @click="onBatchApprove">批量通过</el-button>
                 <el-button type="danger" plain @click="onBatchReject">批量驳回</el-button>
@@ -93,10 +95,10 @@ async function onBatchReject() {
             v-loading="loading"
             :data="data"
             stripe
-            @selection-change="onSelectionChange"
             highlight-current-row
-            @current-change="row => (selected = row)"
             :current-row="selected"
+            @selection-change="onSelectionChange"
+            @current-change="row => (selected = row)"
           >
             <el-table-column type="selection" width="50" />
             <el-table-column prop="title" label="标题" min-width="240" />

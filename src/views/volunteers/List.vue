@@ -45,11 +45,24 @@ async function onSave() {
 
 <template>
   <PageContainer title="志愿者管理">
-    <SearchForm v-model="q" @search="() => { page = 1; fetch() }">
+    <SearchForm
+      v-model="q"
+      @search="
+        () => {
+          page = 1
+          fetch()
+        }
+      "
+    >
       <template #default="{ formData }">
         <el-col :span="8">
           <el-form-item label="关键词">
-            <el-input v-model="formData.keyword" placeholder="姓名/电话" clearable @keyup.enter="$emit('search', formData)" />
+            <el-input
+              v-model="formData.keyword"
+              placeholder="姓名/电话"
+              clearable
+              @keyup.enter="$emit('search', formData)"
+            />
           </el-form-item>
         </el-col>
       </template>

@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { ref, computed, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
@@ -83,10 +82,14 @@ const handleLogout = async () => {
 
 // 全局搜索占位（Ctrl+K）
 const searchOpen = ref(false)
-const disposeSearchHotkey = useHotkeys('ctrl+k', e => {
-  e.preventDefault()
-  searchOpen.value = true
-}, { preventDefault: true })
+const disposeSearchHotkey = useHotkeys(
+  'ctrl+k',
+  e => {
+    e.preventDefault()
+    searchOpen.value = true
+  },
+  { preventDefault: true }
+)
 const disposeEsc = useHotkeys('esc', () => {
   if (searchOpen.value) searchOpen.value = false
 })
@@ -95,67 +98,6 @@ onBeforeUnmount(() => {
   disposeEsc()
 })
 </script>
-
-<style scoped lang="scss">
-@use '@/styles/variables' as *;
-@use '@/styles/mixins' as *;
-
-.topbar {
-  height: $topbar-height;
-  background-color: var(--topbar-bg);
-  border-bottom: 1px solid var(--color-border);
-  @include flex-between;
-  padding: 0 $spacing-6;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  z-index: $z-index-sticky;
-
-  &__left {
-    flex: 1;
-    min-width: 0;
-  }
-
-  &__right {
-    @include flex-end;
-    gap: $spacing-2;
-  }
-
-  &__action {
-    width: 40px;
-    height: 40px;
-    color: var(--color-text-secondary);
-
-    &:hover {
-      background-color: var(--color-bg-hover);
-    }
-  }
-
-  &__user {
-    @include flex-center;
-    gap: $spacing-2;
-    padding: $spacing-2 $spacing-3;
-    border-radius: $radius-md;
-    cursor: pointer;
-    transition: background-color $transition-fast $ease-out;
-
-    &:hover {
-      background-color: var(--color-bg-hover);
-    }
-  }
-
-  &__username {
-    font-size: $font-size-sm;
-    color: var(--color-text-primary);
-    font-weight: $font-weight-medium;
-
-    // 响应式：小屏幕隐藏用户名
-    @include respond-below('md') {
-      display: none;
-    }
-  }
-}
-</style>
 
 <template>
   <header class="topbar">
@@ -240,3 +182,64 @@ onBeforeUnmount(() => {
     </template>
   </el-dialog>
 </template>
+
+<style scoped lang="scss">
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.topbar {
+  height: $topbar-height;
+  background-color: var(--topbar-bg);
+  border-bottom: 1px solid var(--color-border);
+  @include flex-between;
+  padding: 0 $spacing-6;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-sticky;
+
+  &__left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__right {
+    @include flex-end;
+    gap: $spacing-2;
+  }
+
+  &__action {
+    width: 40px;
+    height: 40px;
+    color: var(--color-text-secondary);
+
+    &:hover {
+      background-color: var(--color-bg-hover);
+    }
+  }
+
+  &__user {
+    @include flex-center;
+    gap: $spacing-2;
+    padding: $spacing-2 $spacing-3;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: background-color $transition-fast $ease-out;
+
+    &:hover {
+      background-color: var(--color-bg-hover);
+    }
+  }
+
+  &__username {
+    font-size: $font-size-sm;
+    color: var(--color-text-primary);
+    font-weight: $font-weight-medium;
+
+    // 响应式：小屏幕隐藏用户名
+    @include respond-below('md') {
+      display: none;
+    }
+  }
+}
+</style>

@@ -52,7 +52,16 @@ async function onReject(row: any) {
 
 <template>
   <PageContainer title="直播申请">
-    <SearchForm v-model="q" :label-width="80" @search="() => { page = 1; fetch() }">
+    <SearchForm
+      v-model="q"
+      :label-width="80"
+      @search="
+        () => {
+          page = 1
+          fetch()
+        }
+      "
+    >
       <template #default="{ formData }">
         <el-col :span="8">
           <el-form-item label="状态">
